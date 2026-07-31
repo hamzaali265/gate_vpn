@@ -1,76 +1,111 @@
-# Gate VPN 🛡️
+<div align="center">
+  <img src="assets/icon.png" width="150" alt="Gate VPN Logo"/>
+  <h1>Gate VPN 🛡️</h1>
+  <p><strong>A modern, fast, and secure Virtual Private Network (VPN) client for Android</strong></p>
+  
+  <p>
+    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
+    <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
+    <img src="https://img.shields.io/badge/OpenVPN-EA7E20?style=for-the-badge&logo=openvpn&logoColor=white" alt="OpenVPN" />
+    <img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="License" />
+  </p>
+</div>
 
-A modern, fast, and secure Virtual Private Network (VPN) client for Android, built with **Flutter** and powered by **OpenVPN**. Gate VPN seamlessly connects you to hundreds of free, open-source VPN servers worldwide via the [VPNGate](https://www.vpngate.net/) API.
+---
 
-## Features ✨
-* **One-Tap Connect**: Instantly connect to the optimal server with a single tap.
-* **Global Server List**: Browse, refresh, and sort hundreds of available servers globally.
-* **Real-time Status**: View live connection duration, Ping (ms), and download/upload speeds.
-* **Smart Caching**: Implements `flutter_cache_manager` with a 6-hour stale-while-revalidate strategy for lightning-fast server list loading without blocking the UI thread.
-* **Robust State Management**: Powered by Riverpod for highly scalable and reactive MVVM architecture.
-* **Background Notifications**: Displays a persistent native Android notification tracking connection duration and byte transfers.
-* **Automatic Reconnection**: Automatically finds and connects to the next best server if the current one drops.
+Gate VPN seamlessly connects you to hundreds of free, open-source VPN servers worldwide using the powerful [VPNGate](https://www.vpngate.net/) API. Designed with a focus on performance, security, and user experience.
 
-## Screenshots 📸
-*(Add your screenshots here!)*
+<br/>
 
-| Home Screen | Server List | Connected State |
-| :---: | :---: | :---: |
-| <img src="assets/screenshot_home.png" width="250"/> | <img src="assets/screenshot_servers.png" width="250"/> | <img src="assets/screenshot_connected.png" width="250"/> |
+## ✨ Key Features
 
-## Tech Stack 🛠️
-- **Framework**: Flutter (Dart)
-- **Architecture**: MVVM with Modular Structure
-- **State Management**: [flutter_riverpod](https://pub.dev/packages/flutter_riverpod)
-- **Native Integration**: [openvpn_flutter](https://pub.dev/packages/openvpn_flutter)
-- **Networking & Parsing**: `http`, `csv` (Parsed in background isolates using `compute()`)
-- **Caching**: [flutter_cache_manager](https://pub.dev/packages/flutter_cache_manager)
+| Feature | Description |
+| :--- | :--- |
+| ⚡ **One-Tap Connect** | Instantly connect to the most optimal server with a single tap. No complex configurations. |
+| 🌍 **Global Server List** | Browse, refresh, and sort hundreds of available servers from all over the world. |
+| 📊 **Real-time Metrics** | View live connection duration, server ping (ms), and active download/upload speeds. |
+| 🚀 **Smart Caching** | Utilizes a 6-hour stale-while-revalidate strategy. The server list loads instantly without blocking the UI. |
+| 🔔 **Background Tracking** | Displays a persistent, native Android notification tracking connection duration and data usage. |
+| 🔄 **Auto-Reconnect** | Automatically finds and connects to the next best server if your current connection drops. |
 
-## Getting Started 🚀
+<br/>
+
+## 📸 Screenshots
+
+*(Replace placeholders with actual screenshots!)*
+
+<div align="center">
+  <img src="assets/screenshot_home.png" width="250" alt="Home Screen"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot_servers.png" width="250" alt="Server List"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot_connected.png" width="250" alt="Connected State"/>
+</div>
+
+<br/>
+
+## 🛠️ Tech Stack & Architecture
+
+Gate VPN strictly follows a **feature-based MVVM architecture** designed for high scalability and separation of concerns.
+
+- **UI Framework:** Flutter (Dart)
+- **State Management:** [Riverpod](https://pub.dev/packages/flutter_riverpod)
+- **Native Integration:** [openvpn_flutter](https://pub.dev/packages/openvpn_flutter)
+- **Caching Layer:** [flutter_cache_manager](https://pub.dev/packages/flutter_cache_manager)
+- **Data Parsing:** Parsed in background isolates using `compute()` to ensure smooth 60fps UI performance.
+
+```text
+lib/
+ ├── core/
+ │    ├── network/          # API Services & Caching logic
+ │    ├── routing/          # Centralized AppRouter
+ │    └── services/         # Native Notification Services
+ └── modules/
+      └── vpn/
+           ├── logic/       # VpnNotifier & VpnState (Riverpod)
+           ├── models/      # Data models (VpnServer)
+           ├── providers/   # Global provider definitions
+           ├── repositories/# Native OpenVPN integration layer
+           └── screens/     # UI components (HomeScreen, ServerListScreen)
+```
+
+<br/>
+
+## 🚀 Getting Started
 
 ### Prerequisites
 * Flutter SDK (v3.10+)
 * Android Studio / Android SDK
 
 ### Installation
-1. Clone the repository:
+
+1. **Clone the repository:**
    ```bash
    git clone git@github.com:hamzaali265/gate_vpn.git
-   ```
-2. Navigate to the directory:
-   ```bash
    cd gate_vpn
    ```
-3. Get the dependencies:
+
+2. **Install dependencies:**
    ```bash
    flutter pub get
    ```
-4. Run the app:
+
+3. **Run the application:**
    ```bash
    flutter run
    ```
 
-> **Note:** OpenVPN on Android requires the `VpnService` permission. The app will prompt the user to grant this permission upon the first connection attempt.
+> ⚠️ **Note:** OpenVPN on Android requires the `VpnService` permission. The app will automatically prompt the user to grant this permission upon their first connection attempt.
 
-## Architecture 🏗️
-The project strictly follows a **feature-based MVVM architecture** for maximum scalability:
-```text
-lib/
- ├── core/
- │    ├── network/          # API Service & Caching logic
- │    ├── routing/          # AppRouter
- │    └── services/         # NotificationServices
- └── modules/
-      └── vpn/
-           ├── logic/       # VpnNotifier & VpnState (Riverpod)
-           ├── models/      # VpnServer data model
-           ├── providers/   # Global provider definitions
-           ├── repositories/# Native OpenVPN integration
-           └── screens/     # HomeScreen, ServerListScreen, SplashScreen
-```
+<br/>
 
-## Contributing 🤝
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## 🤝 Contributing
 
-## License 📄
-[MIT](https://choosealicense.com/licenses/mit/)
+Contributions, issues, and feature requests are welcome! 
+If you plan on making major changes, please open an issue first to discuss what you would like to change.
+
+<br/>
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
