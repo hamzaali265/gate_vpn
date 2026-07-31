@@ -30,19 +30,6 @@ Gate VPN seamlessly connects you to hundreds of free, open-source VPN servers wo
 
 <br/>
 
-## 📸 Screenshots
-
-*(Replace placeholders with actual screenshots!)*
-
-<div align="center">
-  <img src="assets/screenshot_home.png" width="250" alt="Home Screen"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/screenshot_servers.png" width="250" alt="Server List"/>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/screenshot_connected.png" width="250" alt="Connected State"/>
-</div>
-
-<br/>
 
 ## 🛠️ Tech Stack & Architecture
 
